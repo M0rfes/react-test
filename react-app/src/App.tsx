@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState, Fragment } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import FirebaseContext from './firebase';
-import User from './components/User';
+import Users from './components/Users';
 import { User as TUser } from './types/User';
 function App() {
   const [users, setUsers] = useState<{ [key: string]: TUser }>({});
@@ -20,7 +20,7 @@ function App() {
   return (
     <div className="App">
       {Object.entries(users).map(([id, user]) => (
-        <User key={id} id={id} user={user}></User>
+        <Users key={id} id={id} user={user}></Users>
       ))}
     </div>
   );

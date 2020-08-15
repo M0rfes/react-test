@@ -8,7 +8,7 @@ type App = {
     ratting: number;
   };
 };
-const User: FC<{ id: string; user: TUser }> = ({ id, user }) => {
+const Users: FC<{ id: string; user: TUser }> = ({ id, user }) => {
   const [apps, setApps] = useState<App>({});
   const firebase = useContext(FirebaseContext);
   useEffect(() => {
@@ -69,4 +69,4 @@ const User: FC<{ id: string; user: TUser }> = ({ id, user }) => {
     </>
   );
 };
-export default User;
+export default Users;
