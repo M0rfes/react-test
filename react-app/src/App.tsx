@@ -13,7 +13,6 @@ function App() {
         .database()
         .ref("users/")
         .on("value", (snap) => {
-          console.log(Object.values(snap.val()));
           setUsers(snap.val());
         });
     } catch (error) {

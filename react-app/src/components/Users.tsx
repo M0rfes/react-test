@@ -24,7 +24,7 @@ const Users: FC<{ id: string; user: TUser }> = ({ id, user }) => {
       .database()
       .ref(`accounts/${user.account}/apps/${name}`)
       .update(app)
-      .then((c) => console.log(c));
+      .then((c) => {});
   };
   return (
     <>
