@@ -1,20 +1,24 @@
-import React, { useContext, useEffect, useState, Fragment } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import FirebaseContext from './firebase';
-import Users from './components/Users';
-import { User as TUser } from './types/User';
+import React, { useContext, useEffect, useState, Fragment } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import FirebaseContext from "./firebase";
+import Users from "./components/Users";
+import { User as TUser } from "./types/User";
 function App() {
   const [users, setUsers] = useState<{ [key: string]: TUser }>({});
   const firebase = useContext(FirebaseContext);
   useEffect(() => {
-    firebase
-      .database()
-      .ref('users')
-      .on('value', (snap) => {
-        // console.log(Object.values(snap.val()));
-        setUsers(snap.val());
-      });
+    try {
+      firebase
+        .database()
+        .ref("users/")
+        .on("value", (snap) => {
+          console.log(Object.values(snap.val()));
+          setUsers(snap.val());
+        });
+    } catch (error) {
+      console.log(error);
+    }
     return () => {};
   }, [firebase]);
   return (

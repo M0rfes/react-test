@@ -1,6 +1,6 @@
-import React, { FC, Fragment, useContext, useEffect, useState } from 'react';
-import { User as TUser } from '../types/User';
-import FirebaseContext from '../firebase';
+import React, { FC, Fragment, useContext, useEffect, useState } from "react";
+import { User as TUser } from "../types/User";
+import FirebaseContext from "../firebase";
 
 type App = {
   [name: string]: {
@@ -15,7 +15,7 @@ const Users: FC<{ id: string; user: TUser }> = ({ id, user }) => {
     firebase
       .database()
       .ref(`accounts/${user.account}`)
-      .on('value', (snap) => {
+      .on("value", (snap) => {
         setApps(snap.val().apps);
       });
   }, [firebase]);
@@ -48,18 +48,26 @@ const Users: FC<{ id: string; user: TUser }> = ({ id, user }) => {
               min="0"
               max="5"
               value={app.ratting}
-              onChange={(e) =>
+              onChange={(e) => {
+                const ratting = (e.target as any)?.value;
                 setApps((apps) => {
                   const app = apps[name];
+                  console.log({
+                    ...apps,
+                    [name]: {
+                      ...app,
+                      ratting,
+                    },
+                  });
                   return {
                     ...apps,
                     [name]: {
                       ...app,
-                      ratting: (e.target as any).value,
+                      ratting,
                     },
                   };
-                })
-              }
+                });
+              }}
             ></input>
             <button type="submit">Rate</button>
           </form>
