@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState, Fragment } from "react";
-import logo from "./logo.svg";
+import React, { useContext, useEffect, useState } from "react";
 import "./App.css";
 import FirebaseContext from "./firebase";
 import Users from "./components/Users";

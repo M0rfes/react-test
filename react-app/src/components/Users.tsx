@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useContext, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import { User as TUser } from "../types/User";
 import FirebaseContext from "../firebase";
 
@@ -18,7 +18,7 @@ const Users: FC<{ id: string; user: TUser }> = ({ id, user }) => {
       .on("value", (snap) => {
         setApps(snap.val().apps);
       });
-  }, [firebase]);
+  }, [firebase, user.account]);
   const doSubmit = (name: string, app: { title: string; ratting: number }) => {
     firebase
       .database()
